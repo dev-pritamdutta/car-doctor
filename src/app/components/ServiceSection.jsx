@@ -1,10 +1,11 @@
 import ServiceDescription from "@/components/utils/Description";
 import React from "react";
 import ServiceCard from "./ServiceCard";
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
 
 export default async function ServiceSection() {
-  const data = await dbConnect("test_services").find({}).toArray();
+  const serviceCollection = dbConnect(collectionNameObj.servicesCollection);
+  const data = await serviceCollection.find({}).toArray();
 
   return (
     <div>
